@@ -40,14 +40,59 @@ class Airplane {
       - Give instances of Person a method `.toString()`:
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
-  
+
 class Person {
   constructor(name, age) {
     this.name = name;
     this.age = age;
-  }    
+    this.stomach = [];
+  } // methods are below
+  eat(edible) {
+    if(this.stomach.length < 10) {
+      this.stomach.push(edible);
+    }
+  }  
+  poop() {
+    this.stomach = [];
+  }
+  toString() {
+    return `${this.name}, ${this.age}`;
+  }
 }
-  
+
+class BabyEm extends Person {
+  constructor(name, age, toy) {
+    super(name, age);
+    this.toy = toy;
+  }
+  play() {
+    return `${this.name} plays with ${this.toy}`
+  }
+}
+
+const emily = new Person('Emily', 19);
+const em = new BabyEm('Em', 1, 'raddle');
+
+emily.eat('pizza');
+emily.eat('spaghetti');
+emily.eat('tacos');
+console.log(emily.stomach);
+emily.poop();
+console.log(emily.stomach);
+console.log(emily.toString());
+em.eat('apple');
+em.eat('carrot');
+em.eat('banana');
+console.log(em.stomach);
+em.poop;
+console.log(em.stomach);
+console.log(em.toString());
+console.log(em.play());
+
+
+
+
+
   /*
     TASK 2
       - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
