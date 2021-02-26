@@ -188,17 +188,13 @@ class Instructor extends Lambdasian{
     this.favLanguage = attrs.favLanguage;
     this.catchPhrase = attrs.catchPhrase;
   }
-  demo() {
-    return `Today we are learning about ${this.subject}' where subject is the param passed in.`
+  demo(subject) {
+    return `Today we are learning about ${subject}`
   }
-  grade() {
-    return `${this.student.name} receives a perfect score on ${this.subject}`
+  grade(student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`
   }
 }
-
-
-
-
 
 
   /*
@@ -216,9 +212,26 @@ class Instructor extends Lambdasian{
           + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
           + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
   */
- class Student {
-     
- }
+class Student extends Lambdasian{
+  constructor(attrs) {
+    super(attrs);
+    this.previousBackground = attrs.previousBackground;
+    this.className = attrs.className;
+    this.favSubjects = attrs.favSubjects;
+  }
+  listSubjects() {
+    const favSubjects = this.favSubjects.join(' ')
+    return `Loving ${favSubjects}`;
+  }
+  PRAssignment(subject) {
+    const student = this;
+    return `${student.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject) {
+    const student = this;
+    return `${student.name} has begun sprint challenge on ${subject}`;
+  }
+}
   
   /*
     TASK 6
@@ -233,9 +246,19 @@ class Instructor extends Lambdasian{
           + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
           + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
   */
- class ProjectManager {
-     
- }
+class ProjectManager extends Instructor {
+  constructor(attrs){
+    super(attrs);
+    this.gradClassName = attrs.gradClassName;
+    this.favInstructor = attrs.favInstructor;
+  }
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
+}
   /*
     STRETCH PROBLEM (no tests!)
       - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
@@ -244,7 +267,18 @@ class Instructor extends Lambdasian{
         + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
         + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
   */
-
+class StretchStudent extends Instructor {
+  constructor(){
+    super();
+    this.grade = Math.random(100);
+  }
+  graduate() {
+    if(this.grade * 100 > 0.7) {
+      return 'Let them graduate';
+    }
+    return 'Go back';
+  }
+}
 
   //End of Challenge
   /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
