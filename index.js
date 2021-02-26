@@ -106,34 +106,6 @@ console.log(em.play());
       - A car which runs out of `fuel` while driving can't drive any more distance:
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
-  
-// class Car {
-//   constructor(model, milesPerGallon) {
-//     this.model = model;
-//     this.milesPerGallon = milesPerGallon;
-//     this.tank = 0;
-//     this.odometer = 0;
-//   }
-//   fill(gallons) {
-//     this.tank = this.tank + gallons;
-//   }
-//   drive(distance){
-//     const driveableMiles = this.tank * this.mpg;
-//     if(distance <= driveableMiles) {
-//       this.odometer = this.odometer + distance;
-//       this.tank = this.tank - (distance / this.mpg);
-//     } else {
-//       this.odometer = this.odometer + driveableMiles;
-//       this.tank = 0;
-//       return `I ran out of fuel at ${this.odometer} miles!`
-//     }
-//   }
-// }
-
-// const mustang = new Car('mustang', 15);
-
-// mustang.fill(30);
-// console.log(mustang.drive(451));
 
 class Car{
   constructor(model, milesPerGallon){
@@ -177,9 +149,23 @@ console.log(mustang.drive(451));
           + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
           + {name} and {location} of course come from the instance's own properties.
   */
- class Lambdasian {
-    
+class Lambdasian {
+  constructor(attrs) {
+    this.name = attrs.name;
+    this.age = attrs.age;
+    this.location = attrs.location;
   }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
+}
+
+const natalie = new Lambdasian({
+  name: 'Natalie', 
+  age: 16
+});
+
+console.log(natalie.speak);
   
   /*
     TASK 4
